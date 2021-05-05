@@ -1,17 +1,15 @@
 {
-  "name": "storybook-addon-kit",
+  "name": "@storybook/addon-ie11",
   "version": "0.0.0",
-  "description": "everything you need to build a Storybook addon",
+  "description": "Storybook IE11 compatibility addon",
   "keywords": [
     "storybook-addons",
-    "style",
-    "test"
+    "ie11"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/storybookjs/storybook-addon-kit"
+    "url": "https://github.com/storybookjs/addon-ie11"
   },
-  "author": "winkerVSbecks",
   "license": "MIT",
   "main": "dist/preset",
   "files": [
@@ -21,27 +19,30 @@
   ],
   "scripts": {
     "clean": "rimraf ./dist",
-    "build": "babel ./src --out-dir ./dist",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "start": "concurrently \"npm run storybook -- --no-manager-cache --quiet\" \"npm run build -- --watch\"",
+    "start": "concurrently \"yarn storybook -- --no-manager-cache --quiet\" \"yarn build -- --watch\"",
     "build-storybook": "build-storybook",
-    "prerelease": "node check-metadata.js",
-    "release": "npm run build && auto shipit"
+    "release": "yarn build && auto shipit"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-classes": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "@storybook/node-logger": "*",
+    "babel-loader": "^8.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1",
-    "@babel/preset-react": "^7.12.5",
     "@storybook/react": "^6.1.14",
+    "@types/babel__core": "^7.1.6",
+    "@types/webpack": "^4.41.13",
     "auto": "^10.3.0",
-    "babel-loader": "^8.1.0",
     "chalk": "^2.4.2",
     "concurrently": "^5.3.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "typescript": "^4.2.4"
   },
   "peerDependencies": {
     "@storybook/addons": "^6.1.14",
@@ -64,7 +65,7 @@
     "access": "public"
   },
   "storybook": {
-    "displayName": "Addon Kit",
+    "displayName": "Addon IE 11",
     "supportedFrameworks": [
       "react",
       "vue",

@@ -5,7 +5,9 @@
   "author": "tooppaaa",
   "keywords": [
     "storybook-addons",
-    "ie11"
+    "ie11",
+    "legacy",
+    "compatibility"
   ],
   "repository": {
     "type": "git",

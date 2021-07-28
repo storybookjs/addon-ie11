@@ -42,6 +42,7 @@ const nodeModulesThatNeedToBeParsedBecauseTheyExposeES6 = [
   "acorn-jsx",
   "better-opn",
   "boxen",
+  "camelcase",
   "chalk",
   "color-convert",
   "commander",

@@ -38,30 +38,40 @@ export const managerBabel = (config: BabelOptions): BabelOptions => {
 };
 
 const nodeModulesThatNeedToBeParsedBecauseTheyExposeES6 = [
-  "@storybook/node_logger",
+  "@storybook[\\\\/]node_logger",
+  "@testing-library[\\\\/]dom",
+  "@testing-library[\\\\/]user-event",
   "acorn-jsx",
+  "ansi-align",
+  "ansi-colors",
+  "ansi-escapes",
+  "ansi-regex",
+  "ansi-styles",
   "better-opn",
   "boxen",
   "camelcase",
   "chalk",
   "color-convert",
   "commander",
-  "highlight.js",
   "find-cache-dir",
   "find-up",
   "fs-extra",
+  "highlight.js",
   "json5",
   "node-fetch",
   "pkg-dir",
+  "prettier",
+  "pretty-format",
   "resolve-from",
   "semver",
+  "slash",
   "uuid",
 ];
-const escape = (str: string) => str.replace("/", "/");
+
 const include = new RegExp(
-  `[\\\\/]node_modules[\\\\/](${nodeModulesThatNeedToBeParsedBecauseTheyExposeES6
-    .map(escape)
-    .join("|")})`
+  `[\\\\/]node_modules[\\\\/](${nodeModulesThatNeedToBeParsedBecauseTheyExposeES6.join(
+    "|"
+  )})`
 );
 
 const es6Loader = {

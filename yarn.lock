@@ -417,7 +417,7 @@
     "@babel/traverse" "^7.13.0"
     "@babel/types" "^7.13.12"
 
-"@babel/helper-replace-supers@^7.14.5", "@babel/helper-replace-supers@^7.15.0":
+"@babel/helper-replace-supers@^7.15.0":
   version "7.15.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-replace-supers/-/helper-replace-supers-7.15.0.tgz#ace07708f5bf746bf2e6ba99572cce79b5d4e7f4"
   integrity sha512-6O+eWrhx+HEra/uJnifCwhwMd6Bp5+ZfZeJwbqUTuqkhIT6YcRhiZCOOFChRypOIe0cV46kFrRBlm+t5vHCEaA==
@@ -883,19 +883,6 @@
     "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/helper-replace-supers" "^7.13.0"
     "@babel/helper-split-export-declaration" "^7.12.13"
-    globals "^11.1.0"
-
-"@babel/plugin-transform-classes@^7.12.11":
-  version "7.14.9"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-classes/-/plugin-transform-classes-7.14.9.tgz#2a391ffb1e5292710b00f2e2c210e1435e7d449f"
-  integrity sha512-NfZpTcxU3foGWbl4wxmZ35mTsYJy8oQocbeIMoDAGGFarAmSQlL+LWMkDx/tj6pNotpbX3rltIA4dprgAPOq5A==
-  dependencies:
-    "@babel/helper-annotate-as-pure" "^7.14.5"
-    "@babel/helper-function-name" "^7.14.5"
-    "@babel/helper-optimise-call-expression" "^7.14.5"
-    "@babel/helper-plugin-utils" "^7.14.5"
-    "@babel/helper-replace-supers" "^7.14.5"
-    "@babel/helper-split-export-declaration" "^7.14.5"
     globals "^11.1.0"
 
 "@babel/plugin-transform-computed-properties@^7.13.0":

@@ -4,7 +4,6 @@ import { logger } from "@storybook/node-logger";
 
 interface BabelOptions {
   extends: string | null;
-  plugins: PluginItem[] | null;
   presets: PluginItem[] | null;
 }
 
@@ -18,14 +17,11 @@ const ie11Preset = [
   "storybook-addon-ie11",
 ];
 
-const plugins = [require.resolve("@babel/plugin-transform-classes")];
-
 export const babel = (config: BabelOptions): BabelOptions => {
   const { presets = [] } = config;
   return {
     ...config,
     presets: [...(presets || []), ie11Preset],
-    plugins,
   };
 };
 
@@ -84,7 +80,6 @@ const es6Loader = {
       options: {
         sourceType: "unambiguous",
         presets: [ie11Preset],
-        plugins,
       },
     },
   ],

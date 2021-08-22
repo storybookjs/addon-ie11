@@ -30,7 +30,6 @@
     "release": "yarn build && auto shipit"
   },
   "dependencies": {
-    "@babel/plugin-transform-classes": "^7.12.11",
     "@babel/preset-env": "^7.12.11",
     "@storybook/node-logger": "*",
     "babel-loader": "^8.1.0"

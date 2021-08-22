@@ -1,6 +1,6 @@
 {
   "name": "@storybook/addon-ie11",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Storybook IE11 compatibility addon",
   "author": "tooppaaa",
   "keywords": [

@@ -1,3 +1,15 @@
+# v0.0.5 (Sun Aug 22 2021)
+
+#### ⚠️ Pushed to `main`
+
+- fix: remove babel plugin (clementdungler@gmail.com)
+
+#### Authors: 1
+
+- Clément DUNGLER (clementdungler@gmail.com)
+
+---
+
 # v0.0.4 (Mon Aug 23 2021)
 
 #### 🐛 Bug Fix

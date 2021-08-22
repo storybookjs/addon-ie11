@@ -62,9 +62,11 @@ const nodeModulesThatNeedToBeParsedBecauseTheyExposeES6 = [
   "pkg-dir",
   "prettier",
   "pretty-format",
+  "react-dev-utils",
   "resolve-from",
   "semver",
   "slash",
+  "strip-ansi",
   "uuid",
 ];
 

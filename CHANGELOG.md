@@ -1,3 +1,19 @@
+# v0.0.4 (Mon Aug 23 2021)
+
+#### 🐛 Bug Fix
+
+- feature: add 'react-dev-utils' and 'strip-ansi' [#6](https://github.com/storybookjs/addon-ie11/pull/6) ([@tooppaaa](https://github.com/tooppaaa))
+
+#### ⚠️ Pushed to `main`
+
+- chore: update readme ([@tooppaaa](https://github.com/tooppaaa))
+
+#### Authors: 1
+
+- Clément DUNGLER ([@tooppaaa](https://github.com/tooppaaa))
+
+---
+
 # v0.0.2 (Sun Aug 22 2021)
 
 #### 🐛 Bug Fix

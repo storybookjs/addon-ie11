@@ -10,6 +10,7 @@ interface BabelOptions {
 const ie11Preset = [
   "@babel/preset-env",
   {
+    loose: true,
     targets: {
       ie: "11",
     },

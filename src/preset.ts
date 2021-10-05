@@ -107,8 +107,8 @@ export const webpack = (webpackConfig: Configuration = {}): Configuration => {
   };
 };
 
-export const entries = ["event-source-polyfill/src/eventsource"];
+export const entries = [require.resolve("./event-source-polyfill")];
 export const managerEntries = (existingManagerEntries: string[]) => [
-  "event-source-polyfill/src/eventsource",
+  require.resolve("./event-source-polyfill"),
   ...existingManagerEntries,
 ];

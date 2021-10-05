@@ -106,3 +106,6 @@ export const webpack = (webpackConfig: Configuration = {}): Configuration => {
     },
   };
 };
+
+export const entries = ["event-source-polyfill/src/eventsource"];
+export const managerEntries = ["event-source-polyfill/src/eventsource"];

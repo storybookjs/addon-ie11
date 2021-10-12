@@ -7,6 +7,10 @@ interface BabelOptions {
   presets: PluginItem[] | null;
 }
 
+interface PresetOptions {
+  includeModules?: string[];
+}
+
 const ie11Preset = [
   "@babel/preset-env",
   {
@@ -34,9 +38,9 @@ export const managerBabel = (config: BabelOptions): BabelOptions => {
 };
 
 const nodeModulesThatNeedToBeParsedBecauseTheyExposeES6 = [
-  "@storybook[\\\\/]node_logger",
-  "@testing-library[\\\\/]dom",
-  "@testing-library[\\\\/]user-event",
+  "@storybook/node_logger",
+  "@testing-library/dom",
+  "@testing-library/user-event",
   "acorn-jsx",
   "ansi-align",
   "ansi-colors",
@@ -66,38 +70,62 @@ const nodeModulesThatNeedToBeParsedBecauseTheyExposeES6 = [
   "uuid",
 ];
 
-const include = new RegExp(
-  `[\\\\/]node_modules[\\\\/](${nodeModulesThatNeedToBeParsedBecauseTheyExposeES6.join(
-    "|"
-  )})`
-);
+const escapeDirectorySeparators = (module: string) => {
+  return module.replace(/\//, "[\\\\/]");
+};
 
-const es6Loader = {
-  test: /\.js$/,
-  use: [
-    {
-      loader: require.resolve("babel-loader"),
-      options: {
-        sourceType: "unambiguous",
-        presets: [ie11Preset],
+const createEs6Loader = (options?: PresetOptions) => {
+  const modules = [
+    ...nodeModulesThatNeedToBeParsedBecauseTheyExposeES6,
+    ...(options?.includeModules ?? []),
+  ];
+
+  const include = new RegExp(
+    `[\\\\/]node_modules[\\\\/](${modules
+      .map(escapeDirectorySeparators)
+      .join("|")})`
+  );
+
+  const es6Loader = {
+    test: /\.js$/,
+    use: [
+      {
+        loader: require.resolve("babel-loader"),
+        options: {
+          sourceType: "unambiguous",
+          presets: [ie11Preset],
+        },
       },
-    },
-  ],
-  include,
+    ],
+    include,
+  };
+
+  return es6Loader;
 };
 
 export const managerWebpack = (
-  webpackConfig: Configuration = {}
-): Configuration => ({
-  ...webpackConfig,
-  module: {
-    ...webpackConfig.module,
-    rules: [...(webpackConfig.module?.rules ?? []), es6Loader],
-  },
-});
+  webpackConfig: Configuration = {},
+  options?: PresetOptions
+): Configuration => {
+  const es6Loader = createEs6Loader(options);
 
-export const webpack = (webpackConfig: Configuration = {}): Configuration => {
+  return {
+    ...webpackConfig,
+    module: {
+      ...webpackConfig.module,
+      rules: [...(webpackConfig.module?.rules ?? []), es6Loader],
+    },
+  };
+};
+
+export const webpack = (
+  webpackConfig: Configuration = {},
+  options: PresetOptions
+): Configuration => {
   logger.info(`=> Using IE11 addon`);
+
+  const es6Loader = createEs6Loader(options);
+
   return {
     ...webpackConfig,
     module: {

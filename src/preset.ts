@@ -38,9 +38,9 @@ export const managerBabel = (config: BabelOptions): BabelOptions => {
 };
 
 const nodeModulesThatNeedToBeParsedBecauseTheyExposeES6 = [
-  "@storybook[\\\\/]node_logger",
-  "@testing-library[\\\\/]dom",
-  "@testing-library[\\\\/]user-event",
+  "@storybook/node_logger",
+  "@testing-library/dom",
+  "@testing-library/user-event",
   "acorn-jsx",
   "ansi-align",
   "ansi-colors",

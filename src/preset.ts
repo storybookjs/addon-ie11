@@ -2,6 +2,10 @@ import type { PluginItem } from "@babel/core"; // eslint-disable-line import/no-
 import type { Configuration } from "webpack"; // eslint-disable-line import/no-extraneous-dependencies
 import { logger } from "@storybook/node-logger";
 
+interface PresetOptions {
+  extra: (string | RegExp)[];
+}
+
 interface BabelOptions {
   extends: string | null;
   presets: PluginItem[] | null;
@@ -34,6 +38,7 @@ export const managerBabel = (config: BabelOptions): BabelOptions => {
 };
 
 const nodeModulesThatNeedToBeParsedBecauseTheyExposeES6 = [
+  "@storybook[\\\\/]expect",
   "@storybook[\\\\/]node_logger",
   "@testing-library[\\\\/]dom",
   "@testing-library[\\\\/]user-event",
@@ -53,12 +58,15 @@ const nodeModulesThatNeedToBeParsedBecauseTheyExposeES6 = [
   "find-up",
   "fs-extra",
   "highlight.js",
+  "jest-mock",
   "json5",
   "node-fetch",
   "pkg-dir",
   "prettier",
   "pretty-format",
   "react-dev-utils",
+  "react-router",
+  "react-router-dom",
   "resolve-from",
   "semver",
   "slash",
@@ -72,7 +80,7 @@ const include = new RegExp(
   )})`
 );
 
-const es6Loader = {
+const es6Loader = (extra: (string | RegExp)[]) => ({
   test: /\.js$/,
   use: [
     {
@@ -83,26 +91,34 @@ const es6Loader = {
       },
     },
   ],
-  include,
-};
-
-export const managerWebpack = (
-  webpackConfig: Configuration = {}
-): Configuration => ({
-  ...webpackConfig,
-  module: {
-    ...webpackConfig.module,
-    rules: [...(webpackConfig.module?.rules ?? []), es6Loader],
-  },
+  include: [include, extra].filter(Boolean),
 });
 
-export const webpack = (webpackConfig: Configuration = {}): Configuration => {
-  logger.info(`=> Using IE11 addon`);
+export const managerWebpack = (
+  webpackConfig: Configuration = {},
+  { extra }: PresetOptions
+): Configuration => {
+  console.log("opt", extra);
   return {
     ...webpackConfig,
     module: {
       ...webpackConfig.module,
-      rules: [...(webpackConfig.module?.rules ?? []), es6Loader],
+      rules: [...(webpackConfig.module?.rules ?? []), es6Loader(extra)],
+    },
+  };
+};
+
+export const webpack = (
+  webpackConfig: Configuration = {},
+  { extra }: PresetOptions
+): Configuration => {
+  logger.info(`=> Using IE11 addon`);
+  console.log(extra);
+  return {
+    ...webpackConfig,
+    module: {
+      ...webpackConfig.module,
+      rules: [...(webpackConfig.module?.rules ?? []), es6Loader(extra)],
     },
   };
 };
